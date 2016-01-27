@@ -352,7 +352,7 @@ class MyParser {
     */
     public static String dateFormat(String time_raw) throws IOException, ParseException
     {
-        SimpleDateFormat date_in_format = new SimpleDateFormat ("MMM-dd-yyy HH:mm:ss");
+        SimpleDateFormat date_in_format = new SimpleDateFormat ("MMM-dd-yy HH:mm:ss");
         SimpleDateFormat date_out_format = new SimpleDateFormat ("YYYY-MM-dd HH:mm:ss");
         String formated_time = date_out_format.format(date_in_format.parse(time_raw));
         return formated_time;
