@@ -1,2 +1,2 @@
 -- dropSQLIndex.sql
-DROP TABLE IF EXISTS Item_Location;
+DROP TABLE IF EXISTS ItemLocation;
