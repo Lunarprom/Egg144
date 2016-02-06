@@ -69,7 +69,7 @@ public class SearchEngine {
     
     /** Creates a new instance of SearchEngine */
     public SearchEngine() throws IOException {
-        searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(new File("/var/lib/lucene"))));
+        searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(new File("/var/lib/lucene/index"))));
         parser = new QueryParser("content", new StandardAnalyzer());
     }
     
@@ -96,7 +96,8 @@ public class SearchEngine {
 		TopDocs topdocs =se.performSearch(query,numResultsToReturn+numResultsToSkip);	//what is the second argument??
 		System.out.println("Results found: " + topdocs.totalHits);
 		ScoreDoc[] hits = topdocs.scoreDocs;
-		for (int i = 0; i < hits.length; i++) {
+        //if (numResultsToSkip>hit.length)
+		for (int i = numResultsToSkip; i < hits.length; i++) {
             Document doc = se.getDocument(hits[i].doc);
             SearchResult newSR = new SearchResult(doc.get("itemID"), doc.get("name"));
             //result[i]=newSR;

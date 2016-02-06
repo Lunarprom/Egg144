@@ -31,7 +31,7 @@ public class Indexer {
     public IndexWriter getIndexWriter ()throws IOException
     {
         if (indexWriter == null){
-        Directory indexDir = FSDirectory.open(new File("/var/lib/lucene"));
+        Directory indexDir = FSDirectory.open(new File("/var/lib/lucene/index"));
         IndexWriterConfig idconfig = new IndexWriterConfig (Version.LUCENE_4_10_2, new StandardAnalyzer());
         indexWriter = new IndexWriter(indexDir, idconfig);
         }   
@@ -61,7 +61,7 @@ public class Indexer {
     public void indexItem (ResultSet rs, PreparedStatement ps) throws IOException
     {
         try{
-        System.out.println("Indexing Item: "+ rs.getInt("ItemID"));
+        //System.out.println("Indexing Item: "+ rs.getInt("ItemID"));
         IndexWriter idWirter = getIndexWriter();
         Document doc = new Document();
         String itemID = rs.getString("ItemID");
