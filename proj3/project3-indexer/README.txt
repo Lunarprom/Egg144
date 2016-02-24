@@ -1,6 +1,3 @@
-This example contains a simple utility class to simplify opening database
-connections in Java applications, such as the one you will write to build
-your Lucene index. 
+In the Indexer.java file, we chose "ItemID", "Name" and "Description" from the Item table. 
 
-To build and run the sample code, use the "run" ant target inside
-the directory with build.xml by typing "ant run".
+Since we should also use "Category" as one of the source of search, we build a getCategory method, using the "ItemID" within the Category table to collect all the categories of the item. 
