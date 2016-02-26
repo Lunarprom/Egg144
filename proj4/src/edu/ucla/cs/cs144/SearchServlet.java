@@ -22,13 +22,13 @@ public class SearchServlet extends HttpServlet implements Servlet {
     		String numberResultsToSkip = request.getParameter("numResultsToSkip");
     	int nrtSkip_int;
         int nrtReturn_int;
-        if (numberResultsToSkip==""||numberResultsToSkip==null)
-            nrtSkip_int = 0;
-        else
+        //if (numberResultsToSkip==""||numberResultsToSkip==null)
+         //   nrtSkip_int = 0;
+        //else
     	   nrtSkip_int = Integer.parseInt(numberResultsToSkip);
-        if (numberResultsToReturn==""||numberResultsToReturn==null)
-            nrtReturn_int =20;
-        else
+        //if (numberResultsToReturn==""||numberResultsToReturn==null)
+         //   nrtReturn_int =20;
+        //else
     	   nrtReturn_int = Integer.parseInt(numberResultsToReturn);
 
 
@@ -36,9 +36,9 @@ public class SearchServlet extends HttpServlet implements Servlet {
     	SearchResult[] searchresult = asclient.basicSearch(q, nrtSkip_int, nrtReturn_int);
 
     	request.setAttribute("resultArray", searchresult);
-        request.setAttribute("q",q);
-        request.setAttribute("numResultsToSkip", nrtSkip_int);
-        request.setAttribute("numResultsToReturn", nrtReturn_int);
-    	request.getRequestDispatcher("/searchResult.jsp");
+        //request.setAttribute("q",q);
+        //request.setAttribute("numResultsToSkip", nrtSkip_int);
+        //request.setAttribute("numResultsToReturn", nrtReturn_int);
+    	request.getRequestDispatcher("./searchResult.jsp").forward(request, response);
     }
 }

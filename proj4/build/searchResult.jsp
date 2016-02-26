@@ -13,15 +13,13 @@
         SearchResult[] srArr = (SearchResult[])request.getAttribute("resultArray");
         for (int i=0; i<srArr.length;i++){
         SearchResult result = srArr[i];
-      
       %>
       <tr>
-        <td><%=result.getItemId() %></td>
-        <td><%=result.getName() %></td>
-        <td>what</td>
+        <td><%= result.getItemId() %></td>
+        <td><%= result.getName() %></td>
       </tr>
       <%
-      ｝
+      }
       %>
     </table>
 
