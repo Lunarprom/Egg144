@@ -1,8 +1,9 @@
-<%@ page import="edu.ucla.cs.cs144.searchResult"%>
+<%@ page import="edu.ucla.cs.cs144.SearchResult"%>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Ebay Keyword Search</title>
+  <meta charset="utf-8">
 </head>
 <body>
   <div>
@@ -17,11 +18,13 @@
       <tr>
         <td><%=result.getItemId() %></td>
         <td><%=result.getName() %></td>
+        <td>what</td>
       </tr>
       <%
       ｝
       %>
     </table>
+
   </div>
 </body>
 </html>

@@ -170,7 +170,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
 			        request.setAttribute("categories", item.getCategories());
 			        request.setAttribute("bids", item.getBids());
 			        request.setAttribute("xml", xmlData);
-			        request.getRequestDispatcher("/getItem.jsp").forward(request, response);
+			        request.getRequestDispatcher("/getItemResult.jsp").forward(request, response);
 			    }
 	        }catch(ParserConfigurationException| SAXException e){
 	        	e.printStackTrace();

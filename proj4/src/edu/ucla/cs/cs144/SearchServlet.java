@@ -18,8 +18,8 @@ public class SearchServlet extends HttpServlet implements Servlet {
         // your codes here
     
         	String q = request.getParameter("q");
-        	String numberResultsToReturn = request.getParameter("numberResultsToReturn");
-    		String numberResultsToSkip = request.getParameter("numberResultsToSkip");
+        	String numberResultsToReturn = request.getParameter("numResultsToReturn");
+    		String numberResultsToSkip = request.getParameter("numResultsToSkip");
     	int nrtSkip_int;
         int nrtReturn_int;
         if (numberResultsToSkip==""||numberResultsToSkip==null)
@@ -37,8 +37,8 @@ public class SearchServlet extends HttpServlet implements Servlet {
 
     	request.setAttribute("resultArray", searchresult);
         request.setAttribute("q",q);
-        request.setAttribute("numberResultsToSkip", nrtSkip_int);
-        request.setAttribute("numberResultsToReturn", nrtReturn_int);
-    	request.getRequestDispatcher("/searchResults.jsp");
+        request.setAttribute("numResultsToSkip", nrtSkip_int);
+        request.setAttribute("numResultsToReturn", nrtReturn_int);
+    	request.getRequestDispatcher("/searchResult.jsp");
     }
 }
