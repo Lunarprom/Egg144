@@ -15,8 +15,8 @@
         SearchResult result = srArr[i];
       %>
       <tr>
-        <td><%= result.getItemId() %></td>
-        <td><%= result.getName() %></td>
+        <td><a href="item?itemID=<%= result.getItemId() %>"><%= result.getItemId() %>   <%= result.getName() %></td>
+        <td></td>
       </tr>
       <%
       }

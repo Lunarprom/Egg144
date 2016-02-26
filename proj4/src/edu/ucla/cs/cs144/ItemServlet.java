@@ -74,6 +74,9 @@ public class ItemServlet extends HttpServlet implements Servlet {
     /*credited from MyParser.java*/
 
     public static Document xmlToDocument(String xmlData) throws ParserConfigurationException, SAXException ,IOException {
+    	//System.out.println(xmlData);
+    	if (xmlData==null || xmlData =="")
+    		return null;
     	StringReader reader = new StringReader(xmlData);
     	InputSource source = new InputSource(reader);
     	DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
@@ -82,10 +85,12 @@ public class ItemServlet extends HttpServlet implements Servlet {
     	return doc;
     }
     public static ItemBean makeItem(Document doc){
-    	Element itemElement = doc.getDocumentElement();
-    	String itemId = itemElement.getAttribute("itemId");
+    	if (doc==null ) 
+    		return null;
+    	Element itemElement =  doc.getDocumentElement();
+    	String itemId = itemElement.getAttribute("ItemID");
     	if (itemId == "" || itemId ==null)
-    		return new ItemBean();
+    		return null;
     	else{
 	    	ItemBean item = new ItemBean(itemId);
 	    	//obtain each item's elements
@@ -109,7 +114,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
 	    	String rating = sellerElement.getAttribute("Rating");
 	    	item.setSeller(new User(sellerID, rating));
 	    	//bids
-	    	Element[] bidsElement = getElementsByTagNameNR(getElementByTagNameNR (itemElement, "Bids"),"Bid");
+	    	Element[] bidsElement = getElementsByTagNameNR(itemElement,"Bids");
 	    	ArrayList bidsList = new ArrayList();
 	    	for (int i=0; i<bidsElement.length; i++)
 	        {
@@ -142,7 +147,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
  
     protected void doGet (HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
     	AuctionSearchClient asClient = new AuctionSearchClient();
-        String itemId = request.getParameter("itemId");
+        String itemId = request.getParameter("itemID");
         String xmlData = asClient.getXMLDataForItemId(itemId);
         if (xmlData == null)
         	request.getRequestDispatcher("/getEmptyItem.html").forward(request, response);
@@ -150,8 +155,10 @@ public class ItemServlet extends HttpServlet implements Servlet {
         	try{
 	        	Document doc = xmlToDocument(xmlData);
 	        	ItemBean item = makeItem(doc);
-	        	if (item ==null ||item.getItemId() == "" )
-		    		request.getRequestDispatcher("/getEmptyItem.html").forward(request, response);
+	        	if (item ==null  )
+		    		request.getRequestDispatcher("/getEmpty.html").forward(request, response);
+		    	else if (item.getItemId() == "")
+		    		request.getRequestDispatcher("/getEmpty.html").forward(request, response);
 		    	else{
 			        //request.setAttribute
 			        request.setAttribute("itemId", itemId);
