@@ -2,9 +2,15 @@
 <html>
 <head>
 	<title>Keyword yooooo!</title>
-	<script type="text/javascript" src = "javaScript/autosuggestControl.js"></script>
-	<script type="text/javascript" src = "javaScript/SuggestionProvider.js"></script>
-	<script type="text/javascript"></script>
+	<meta charset = "UTF-8">
+	<link rel="stylesheet" type = "text/css" href = "css/autosuggest.css">
+	<script type="text/javascript" src = "javaScript/autoSuggestControl.js"></script>
+	<script type="text/javascript" src = "javaScript/suggestionProvider.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var oTextbox = new autoSuggestionControl(document.getElementById("q"), new StateSuggestions());
+		}
+		</script>
 </head>
 <body>
 	<div>
