@@ -1,6 +1,7 @@
 function AutoSuggestionControl(oTextbox, oProvider){
 	this.provider = oProvider;
 	this.textbox = oTextbox;
+	this.init();
 }
 
 //Initialization of the control
@@ -12,7 +13,7 @@ AutoSuggestionControl.prototype.init = function () {
 		}
 		oThis.handleKeyUp(oEvent);
 	}
-}
+};
 
 //Text Selection
 AutoSuggestionControl.prototype.selectRange = function (iStart, iLength) {
@@ -63,6 +64,17 @@ AutoSuggestionControl.prototype.handleKeyUp = function (oEvent) {
 };
 
 
+//Build a Suggestion Provider
+function SuggestionProvider() {
+	//initializations
+}
+
+SuggestionProvider.prototype.requestSuggestions = function (oAutoSuggestControl) {
+	var aSuggestions = new Array();
+
+	//determine suggestions for the control
+	oAutoSuggestControl.autosuggest(aSuggestions);
+}
 
 
 
