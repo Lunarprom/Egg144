@@ -23,7 +23,7 @@ StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*
 
 StateSuggestions.prototype.provideSuggestion = function (oAutoSuggestControl, bTypeAhead) {
 	return function() {
-		if (XMLHttp.readyState == 4) {
+		if (xmlHttp.readyState == 4) {
 			
 			var aSuggestions = [];
 			var completeSuggestion = xmlHttp.responseXML.getElementbyTagName("CompleteSuggestion");
