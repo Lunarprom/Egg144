@@ -156,9 +156,9 @@ public class ItemServlet extends HttpServlet implements Servlet {
 	        	Document doc = xmlToDocument(xmlData);
 	        	ItemBean item = makeItem(doc);
 	        	if (item ==null  )
-		    		request.getRequestDispatcher("/getEmpty.html").forward(request, response);
+		    		request.getRequestDispatcher("/getEmptyItem.html").forward(request, response);
 		    	else if (item.getItemId() == "")
-		    		request.getRequestDispatcher("/getEmpty.html").forward(request, response);
+		    		request.getRequestDispatcher("/getEmptyItem.html").forward(request, response);
 		    	else{
 			        //request.setAttribute
 			        request.setAttribute("itemId", itemId);
