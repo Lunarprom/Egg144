@@ -3,11 +3,25 @@
 <html>
 <head>
   <title>Ebay Keyword Search</title>
-  <meta charset="utf-8">
+  <meta charset = "UTF-8">
+  <link rel="stylesheet" type = "text/css" href = "css/autosuggest.css">
+  <script type="text/javascript" src = "javaScript/autosuggest2.js"></script>
+  <script type="text/javascript" src = "javaScript/suggestionProvider.js"></script>
+  <script type="text/javascript">
+    window.onload = function() {
+      var oTextbox = new AutoSuggestControl(document.getElementById("query"), new StateSuggestions());
+    }
+    </script>
 </head>
 <body>
   <div>
     <h2>Keyword Search Result</h2>
+    <form action ="search">
+    <input type="text" id="query" name="q" value = "queryText">
+    <input type="hidden" name="numResultsToSkip" value="0">
+    <input type="hidden" name="numResultsToReturn" value="20">
+    <input type="submit" value="search!">
+  </form>
     <table>
       <%
         SearchResult[] srArr = (SearchResult[])request.getAttribute("resultArray");
@@ -22,6 +36,10 @@
       }
       %>
     </table>
+    <a href="search?q=<%= request.getParameter("q") %>&numResultsToSkip=<%= Integer.parseInt(request.getParameter("numResultsToSkip"))==0?0: Integer.parseInt(request.getParameter("numResultsToSkip"))-20 %>&numResultsToReturn=<%=request.getParameter("numResultsToReturn")%>">Prev</a>
+   <a href="search?q=<%= request.getParameter("q") %>&amp;numResultsToSkip=<%= srArr.length != 20 ? Integer.parseInt(request.getParameter("numResultsToSkip")) : Integer.parseInt(request.getParameter("numResultsToSkip")) + 20 %>&amp;numResultsToReturn=<%= request.getParameter("numResultsToReturn") %>">Next</a>
+
+   
 
   </div>
 </body>

@@ -41,6 +41,10 @@
 <body>
 	<h1>Item Page</h1>
 	<div>
+		<form action="item">
+			<input type="text" name="itemID">
+			<input type="submit" value = "get Item">
+		</form>
 		<table>
 			<tr>
 				<td>ID: <%= request.getAttribute("itemId") %></td>
