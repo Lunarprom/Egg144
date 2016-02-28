@@ -53,11 +53,11 @@
 					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
 					marker = new google.maps.Marker({
 						position: ucla,
-						map: map
+						map: map 
 					});
-
 				}
 			})
+		}
 		google.maps.event.addDomListener(window, "load", initialiaze);
 	</script>
 </head>
