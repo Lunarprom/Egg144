@@ -24,7 +24,7 @@
 				String longitude = thislocation.getLatitude();
 				String address;
 
-				if (latitude != "" && longitude != ""){
+				if ((latitude != "" && longitude != "") || (latitude != null && longitude != null) {
 					address = latitude + "" + longitude;
 				} else {
 					address = thislocation.getLocation();
@@ -51,10 +51,6 @@
 						center = ucla;
 					}
 					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
-					marker = new google.maps.Marker({
-						position: ucla,
-						map: map 
-					});
 				}
 			})
 		}
