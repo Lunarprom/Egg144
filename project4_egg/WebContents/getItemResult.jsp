@@ -12,42 +12,52 @@
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
 		var geoCoder;
+		var itemAddress;
 		var map;
-		var latLng;
-		var zoomLevel;
+		var marker;
+		var myOptions;
 		function initialiaze() {
-			geoCoder = new google.maps.Geocoder();
+			
 			<%
-			Location thislocation = (Location)request.getAttribute("location");
-				if ((thislocation.getLongitude() != "" && thislocation.getLatitude() != "")&&(thislocation.getLongitude() != null && thislocation.getLatitude() != null)) {
-					out.println("latLng = new google.maps.LatLng(" + thislocation.getLatitude() + ", " + thislocation.getLongitude() + ");");
-					out.println("zoomLevel = 14;");
+				Location thislocation = (Location)request.getAttribute("location");
+				String latitude = thislocation.getLongitude();
+				String longitude = thislocation.getLatitude();
+				String address;
+
+				if (latitude != "" && longitude != ""){
+					address = latitude + "" + longitude;
 				} else {
-					out.println("latLng = new google.maps.LatLng(34.063509,-118.44541;");
-					out.println("zoomLevel = 8");
+					address = thislocation.getLocation();
 				}
 			%>
-			var myOptions = {
-				zoom: zoomLevel,
-				center:latLng
-			}
-			map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
-			<%
-				if (thislocation.getLatitude() == "" || thislocation.getLongitude() == "") {
-					out.println("getAddress();");
+			itemAddress = "<% out.print(address); %>";
+			geoCoder = new google.maps.Geocoder();
+			geoCoder.geocode({'address' : address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK){
+					myOptions = {
+						zoom: 14,
+					center:results[0].geometry.location
+					}
+					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+					marker = new google.maps.Marker({
+						position: results[0].geometry.location
+						map: map
+					});
+				} else {
+					//if no location data found
+					var ucla = new google.maps.LatLng(34.063509,-118.44541)
+					myOptions = {
+						zoom: 5,
+						center = ucla;
+					}
+					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+					marker = new google.maps.Marker({
+						position: ucla,
+						map: map
+					});
+
 				}
-			%>
-		}
-		function getAddress(){
-			var address = "<%= thislocation.getLocation() + "" + request.getAttribute("country") %>";
-			geoCoder.geocode({ 'address': address}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					map.setCenter(results[0].geometry.location);
-					var marker = new google.maps.Marker({
-						position: results[0].geometry.location, map: map});
-				}
-			});
-		}
+			})
 		google.maps.event.addDomListener(window, "load", initialiaze);
 	</script>
 </head>
