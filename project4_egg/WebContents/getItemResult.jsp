@@ -133,8 +133,9 @@
 			}
 			%>
 		</table>
-		<div alt="Map" id="map-canvas"></div>
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<div class = "col">
+			<div alt="Map" id="map-canvas"></div>
+			<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript">
 		var geoCoder;
 		var itemAddress;
