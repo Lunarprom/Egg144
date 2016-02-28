@@ -35,7 +35,27 @@
 				center:latlng;
 			}
 			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+			<%
+				if (item.getLatitude() == null || item.getLongitude() == null) {
+					out.println("getAddress();");
+				}
+
+			%>
 		}
+
+		function getAddress(){
+			var address = "<%= item.getLocation() + "" + item.getCountry() %>";
+			geoCoder.geocode({ 'address': address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					var marker = new google.maps.Marker({
+						position: results[0].geometry.location, map: map});
+				}
+			});
+		}
+
+		google.maps.event.addDomListener(window, "load", initialiaze);
 	</script>
 </head>
 <body>
