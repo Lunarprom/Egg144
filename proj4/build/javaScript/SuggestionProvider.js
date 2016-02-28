@@ -23,10 +23,10 @@ StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*
 
 StateSuggestions.prototype.provideSuggestion = function (oAutoSuggestControl, bTypeAhead) {
 	return function() {
-		if (XMLHttp.readyState == 4) {
+		if (xmlHttp.readyState == 4) {
 			
 			var aSuggestions = [];
-			var completeSuggestion = xmlHttp.responseXML.getElementbyTagName("CompleteSuggestion");
+			var completeSuggestion = xmlHttp.responseXML.getElementsByTagName("CompleteSuggestion");
 
 			for (var i = 0; i < completeSuggestion.length; ++i) {
 				var text = completeSuggestion[i].childNodes[0].getAttribute("data");

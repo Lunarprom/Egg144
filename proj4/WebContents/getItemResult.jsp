@@ -9,34 +9,6 @@
 <head>
 	<title>Ebay Item Search</title>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript">
-		var geoCoder;
-		var map;
-		var latLng;
-		var zoomLevel;
-		function initialiaze() {
-			geoCoder = new google.maps.Geocoder();
-
-			<%
-				if (item.getLatitude() != null && item.getLatitude() != null) {
-					out.println("latLng = new google.maps.LatLng(" + item.getLatitude() + ", " + item.getLongitude() + ");");
-					out.println("zoomLevel = 14;");
-
-				} else {
-					out.println("latLng = new google.maps.LatLng(34.063509,-118.44541;");
-					out.println("zoomLevel = 8");
-				}
-
-			%>
-
-			var myOptions = {
-				zoom: zoomLevel;
-				center:latlng;
-			}
-			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		}
-	</script>
 </head>
 <body>
 	<h1>Item Page</h1>
