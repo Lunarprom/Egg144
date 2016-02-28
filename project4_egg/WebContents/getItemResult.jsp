@@ -34,26 +34,19 @@
 			geoCoder = new google.maps.Geocoder();
 			geoCoder.geocode({'address' : address}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK){
-					myOptions = {
-						zoom: 14,
-					center:results[0].geometry.location
-					}
+					myOptions = {zoom: 14,center:results[0].geometry.location}
 					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
-					marker = new google.maps.Marker({
-						position: results[0].geometry.location
-						map: map
-					});
+					marker = new google.maps.Marker({position: results[0].geometry.location, 
+						map: map});
 				} else {
 					//if no location data found
-					var ucla = new google.maps.LatLng(34.063509,-118.44541)
-					myOptions = {
-						zoom: 5,
-						center = ucla;
-					}
+					var ucla = new google.maps.LatLng(34.063509,-118.44541);
+					myOptions = {zoom: 5,center = ucla};
 					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
 				}
 			})
 		}
+
 		google.maps.event.addDomListener(window, "load", initialiaze);
 	</script>
 </head>
