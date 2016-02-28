@@ -9,44 +9,8 @@
 <head>
 	<title>Ebay Item Search</title>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript">
-		var geoCoder;
-		var itemAddress;
-		var map;
-		var marker;
-		var myOptions;
-		function initialiaze() {
-			
-			<%
-				Location thislocation = (Location)request.getAttribute("location");
-				String latitude = thislocation.getLongitude();
-				String longitude = thislocation.getLatitude();
-				String address;
-
-				if ((latitude != "" && longitude != "") && (latitude != null && longitude != null)) {
-					address = latitude + "" + longitude;
-				} else {
-					address = thislocation.getLocation();
-				}
-			%>
-			itemAddress = "<% out.print(address); %>";
-			geoCoder = new google.maps.Geocoder();
-			geoCoder.geocode({'address' : address}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK){
-					myOptions = {zoom: 14, center:results[0].geometry.location}
-					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
-					marker = new google.maps.Marker({position: results[0].geometry.location, 
-						map: map});
-				} else {
-					//if no location data found
-					var ucla = new google.maps.LatLng(34.063509,-118.44541);
-					myOptions = {zoom: 5, center = ucla};
-					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
-				}
-			});
-		}
-	</script>
+	
+	
 </head>
 <body>
 	<h1>Item Page</h1>
@@ -170,6 +134,47 @@
 			%>
 		</table>
 		<div alt="Map" id="map-canvas"></div>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript">
+		var geoCoder;
+		var itemAddress;
+		var map;
+		var marker;
+		var myOptions;
+		<%
+			Location thislocation = (Location)request.getAttribute("location");
+			String latitude = thislocation.getLongitude();
+			String longitude = thislocation.getLatitude();
+			String address;
+
+			if ((latitude != "" && longitude != "") && (latitude != null && longitude != null)) {
+				address = latitude + "" + longitude;
+			} else {
+				address = thislocation.getLocation();
+			}
+		%>
+		function initialiaze() 
+		{
+			itemAddress = "<% out.print(address); %>";
+			geoCoder = new google.maps.Geocoder();
+			geoCoder.geocode({'address' : address}, function(results, status) 
+			{
+				if (status == google.maps.GeocoderStatus.OK)
+				{
+					myOptions = {zoom: 14, center:results[0].geometry.location}
+					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+					marker = new google.maps.Marker({position: results[0].geometry.location, 
+						map: map});
+				} else 
+				{
+					//if no location data found
+					var ucla = new google.maps.LatLng(34.063509,-118.44541);
+					myOptions = {zoom: 5, center = ucla};
+					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+				}
+			});
+		}
+	</script>
 	</div>
 </body>
 </html>
