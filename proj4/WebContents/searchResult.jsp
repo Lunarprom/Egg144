@@ -36,7 +36,7 @@
       }
       %>
     </table>
-    <a href="search?q=<%= request.getParameter("q") %>&numResultsToSkip=<%= Integer.parseInt(request.getParameter("numResultsToSkip"))==0?0: Integer.parseInt(request.getParameter("numResultsToSkip"))-20 %>&numResultsToReturn=<%=request.getParameter("numResultsToReturn")%>">Prev</a>
+    <a href="search?q=<%= request.getParameter("q") %>&amp;numResultsToSkip=<%= Integer.parseInt(request.getParameter("numResultsToSkip"))==0?0: Integer.parseInt(request.getParameter("numResultsToSkip"))-20 %>&amp;numResultsToReturn=<%=request.getParameter("numResultsToReturn")%>">Prev</a>
    <a href="search?q=<%= request.getParameter("q") %>&amp;numResultsToSkip=<%= srArr.length != 20 ? Integer.parseInt(request.getParameter("numResultsToSkip")) : Integer.parseInt(request.getParameter("numResultsToSkip")) + 20 %>&amp;numResultsToReturn=<%= request.getParameter("numResultsToReturn") %>">Next</a>
 
    
